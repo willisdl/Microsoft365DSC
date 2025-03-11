@@ -1483,6 +1483,14 @@ function Export-M365DSCConfiguration
     $currentExportID = (New-Guid).ToString()
     $data.Add('M365DSCExportId', $currentExportID)
     $data.Add('ConnectionMode', $ConnectionMode)
+    if($null -ne $CertificateThumbprint)
+    {
+        $data.Add('CertificateThumbprint', $CertificateThumbprint)
+    }
+    if($null -ne $ApplicationId)
+    {
+        $data.Add('ApplicationId', $ApplicationId)
+    }
 
     Add-M365DSCTelemetryEvent -Type 'ExportInitiated' -Data $data
     if ($null -ne $Workloads)
