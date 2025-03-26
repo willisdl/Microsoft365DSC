@@ -1,15 +1,82 @@
 # Change log for Microsoft365DSC
 
-# UNRELEASED
+# 1.25.319.1
 
+* AADServicePrincipal
+  * Streamlined logic to translate AppId from a display name.
+* IntuneDeviceConfigurationPolicyAndroidDeviceOwner
+  * Fixed an issue where empty complex objects result in a broken export.
+    FIXES [#5863](https://github.com/microsoft/Microsoft365DSC/issues/5863)
+* SCSensitivityLabel
+  * Fix an issue where the Priority property was always getting updated for an
+    existing label, even if it didn't get updated.
+* SHSpaceGroup
+  * Initial release.
+* SHSpaceUser
+  * Initial release.
+* TeamsApplicationInstance
+  * Initial release.
+* M365DSCDRGUtil
+  * Made a change in the Intune assignment evaluation logic not to validate that
+    the provided group is a valid Entra Id group based on GroupId. The logic
+    to validate this will be left to the Set-TargetResource.
+* M365DSCUtil
+  * Added note about long paths being recommended when installing the Dev branch.
+    FIXES [#3158](https://github.com/microsoft/Microsoft365DSC/issues/3158)
+* DEPENDENCIES
+  * Updated MicrosoftTeams to version 6.9.0.
+  * Updated MSCloudLoginAssistant to version 1.1.42.
+
+# 1.25.312.1
+
+* AADApplication
+  * Defaulting AuthenticationBehaviors as an empty array from the
+    Get-TargetResource function.
 * AADAuthenticationStrengthPolicy
   * Added check to ensure the current exported instance names match in
     Get-TargetResource.
+* AADDomain
+  * Fixed an issue where the test checked a string instead of the variable.
+    FIXES [#5886](https://github.com/microsoft/Microsoft365DSC/issues/5886)
+* AADRoleSetting
+  * Fixed the required permissions.
+    FIXES [#3696](https://github.com/microsoft/Microsoft365DSC/issues/3696)
+* EXORoleGroup
+  * Removed parameter `Roles` when creating a new group if there were
+    no roles assigned to it.
+    FIXES [#5725](https://github.com/microsoft/Microsoft365DSC/issues/5725)
+* IntuneAppleMDMPushNotificationCertificate
+  * Hide error message if no certificate was found during export.
+    FIXES [#5884](https://github.com/microsoft/Microsoft365DSC/issues/5884)
+* IntuneAppProtectionPolicyAndroid
+  * Fix export of `ApprovedKeyboards` and `ExemptedAppPackages` properties.
+* IntuneDeviceManagementEnrollmentAndroidGooglePlay
+  * Changed the resource to be read-only due to the associated APIs not being
+    owned by Microsoft.
+* O365OrgSettings
+  * Add required `Insights Administrator` role for Get and Update.
 * SCDLPCompliancePolicy
-  * Fixes strange issue with the Get-TargetResource throwin an error
+  * Fixes strange issue with the Get-TargetResource throwing an error
     complaining about a null object.
+* SCLabelPolicy
+  * Fixed evaluation of CIMInstances in Test-TargetResource.
+* SPOSiteScript
+  * Fixed an issue where the Get method would fail on fetching a specific script.
+    FIXES [#5701](https://github.com/microsoft/Microsoft365DSC/issues/5701)
+* M35DSCReport
+  * Require Excel to be installed for .xlsx export.
+* M365DSCReverse
+  * Fixed an issue where specifying a component multiple times in the Export
+    would skip the resource altogether.
 * DEPENDENCIES
   * Updated ReverseDSC to version 2.0.0.28.
+* MISC
+  * Added check to ensure the current exported instance names match in
+    Get-TargetResource.
+* M365DSCLogEngine
+  * Fixed an error message appearing if one or more event logs could
+    not be accessed while searching the event source.
+    FIXES [#3811](https://github.com/microsoft/Microsoft365DSC/issues/3811)
 
 # 1.25.305.1
 
